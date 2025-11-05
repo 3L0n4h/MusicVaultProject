@@ -1,0 +1,153 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<th:insert th:insert="~{fragments/head :: main-css}"></th:insert>
+</head>
+<body class="index-page">
+
+	<div th:insert="~{fragments/backgroundFx :: backgroundFx}"></div>
+
+	<!-- Header -->
+	<header class="glass">
+		<nav>
+			<a href="/" class="logo"> <svg class="logo-icon"
+					viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%"
+						y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e0a3ff" />
+                            <stop offset="50%"
+						style="stop-color:#ff69b4" />
+                            <stop offset="100%"
+						style="stop-color:#9370db" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="30" r="8"
+						fill="url(#logoGradient)" opacity="0.8">
+                        <animate attributeName="opacity"
+						values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="30" cy="60" r="6"
+						fill="url(#logoGradient)" opacity="0.6">
+                        <animate attributeName="opacity"
+						values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="70" cy="65" r="7"
+						fill="url(#logoGradient)" opacity="0.7">
+                        <animate attributeName="opacity"
+						values="0.7;1;0.7" dur="1.8s" repeatCount="indefinite" />
+                    </circle>
+                    <line x1="50" y1="30" x2="30" y2="60"
+						stroke="url(#logoGradient)" stroke-width="2" opacity="0.6">
+                        <animate attributeName="opacity"
+						values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="50" y1="30" x2="70" y2="65"
+						stroke="url(#logoGradient)" stroke-width="2" opacity="0.6">
+                        <animate attributeName="opacity"
+						values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="30" y1="60" x2="70" y2="65"
+						stroke="url(#logoGradient)" stroke-width="2" opacity="0.6">
+                        <animate attributeName="opacity"
+						values="0.6;1;0.6" dur="2.8s" repeatCount="indefinite" />
+                    </line>
+                </svg> MUSIC VAULT
+			</a>
+			<ul class="nav-links">
+				<li><a href="/artist">Artist</a></li>
+				<li><a href="/shows">Shows</a></li>
+				<li><a href="/song">Songs</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+			</ul>
+			<div class="mobile-menu-toggle">
+				<div class="hamburger-line"></div>
+				<div class="hamburger-line"></div>
+				<div class="hamburger-line"></div>
+			</div>
+		</nav>
+		<div class="mobile-nav">
+			<a href="/artist">Artist</a> <a href="/shows">Shows</a> <a
+				href="/song">Songs</a> <a href="/about">About</a>
+		</div>
+	</header>
+
+
+	<!-- <section class="hero" id="home">
+		<div class="hero-content">
+			<div class="hero-subtitle">Welcome to Music Vault</div>
+
+			<p>Your community-driven hub where music lovers can discover,
+				share, and celebrate their favorite songs.</p>
+
+		</div>
+	</section> -->
+
+
+	<section class="contact" id="contact">
+		<div class="contact-container">
+
+			<!-- Left Card: Voting Form TODO something in the card causes scrollbar to move on it's own -->
+			<div class="contact-form glass">
+				<h3>Vote Your Favorite Song</h3>
+
+				<div class="alert alert-success alert-dismissible fade show "
+					role="alert" id="voteAlert" th:text="${successMessage}"
+					th:classappend="${successMessage} ? '' : ' invisible'"></div>
+
+				<form th:action="@{/newVote}" th:object="${voteDTO}" method="post"
+					autocomplete="off">
+
+					<div class="p-2 form-group">
+						<label for="songId">Song Title</label> <input list="songs"
+							id="songTitle" name="songTitle" class="form-control" required />
+						<datalist id="songs">
+							<option th:each="song : ${songs}" th:value="${song.title}"></option>
+						</datalist>
+					</div>
+					<div class="p-2">
+						<button type="submit" class="submit-btn btn btn-primary w-100">Vote</button>
+					</div>
+
+				</form>
+			</div>
+
+
+
+			<!-- Right Card: Top 10 -->
+			<div class="contact-info glass">
+				<h3 class="card-title text-success mb-3">Top 10 Songs of the
+					Month</h3>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" th:each="song, iterStat : ${voteTop}">
+						<span th:text="${song.title}">Song Titles</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+
+<script th:src="@{/js/templatemo-neural-scripts.js}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const alert = document.getElementById("voteAlert");
+  if (alert) {
+    setTimeout(() => {
+      alert.classList.remove("show");
+      alert.classList.add("fade");
+    }, 2500);
+  }
+});
+</script>
+
+
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shows</title>
+<th:insert th:insert="~{fragments/head :: main-css}"></th:insert>
+
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+  crossorigin="anonymous">
+</head>
+<body>
+
+<div th:insert="~{fragments/backgroundFx :: backgroundFx}"></div>
+
+	<h3 class="text-center my-4" style="color: white;">Shows</h3>
+	<div class="container">
+
+		<a class="btn btn-primary" href="/" style="width: auto;"> <i
+			class="bi bi-arrow-left"></i> Back
+		</a> <a class="btn btn-primary" href="/shows/new" style="width: auto;">
+			<i class="bi bi-plus-lg"></i> New Show
+		</a>
+
+	</div>
+	<div class="table-container glass">
+		<table class="glass-table">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>group name</th>
+					<th>event name</th>
+					<th>type</th>
+					<th>venue</th>
+					<th>date time</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="show: ${shows}">
+					<!--Fill with thymeleaf. From showsController add attribute shows -->
+					<td th:text="${show.eventId}"></td>
+					<td th:text="${show.artist != null ? show.artist.groupName : '—'}"></td>
+					<td th:text="${show.eventName}"></td>
+					<td th:text="${show.eventType}"></td>
+					<td th:text="${show.venue}"></td>
+					<td
+						th:text="${#temporals.format(show.eventDateTime, 'MMM dd, yyyy hh:mm a')}"></td>
+					<td style="white-space: nowrap">
+
+
+						<div class="btn-group" role="group">
+							<a class="btn btn-sm btn-secondary glass-btn"
+								th:href="@{/shows/edit(id=${show.eventId})}"> <i
+								class="bi bi-pencil"></i> Edit
+							</a> <a class="btn btn-sm btn-danger glass-btn"
+								th:href="@{'/shows/delete/' + ${show.eventId}}"
+								onclick="return confirm('Are you sure?')"> <i
+								class="bi bi-trash"></i> Delete
+							</a>
+						</div>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+</body>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+	crossorigin="anonymous"></script>
+
+</html>

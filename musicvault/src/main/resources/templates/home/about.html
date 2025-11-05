@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us</title>
+<th:insert th:insert="~{fragments/head :: main-css}"></th:insert>
+
+</head>
+<body>
+	
+	<div th:insert="~{fragments/backgroundFx :: backgroundFx}"></div>
+
+	<div class="container ">
+		<section class="about">
+			 <h2 class="section-title">About Music Vault</h2>
+			 
+			 <div class="text-center mt-3 social-links">
+			 
+				<a class="glass" href="/" style="width: auto;">&nbsp; &nbsp;<i
+					class="bi bi-house"></i> &nbsp; &nbsp;
+				</a>
+			</div>
+
+
+			<p class="hero-description">
+				<strong>Music Vault</strong> is a community-driven hub where music
+				lovers can discover, share, and celebrate their favorite songs.
+				Built with passion for all genres, our platform lets you explore
+				a list of songs from emerging artists.
+			</p>
+
+			<p class="hero-description">Find new music, support your favorite
+				artist. Music Vault is your digital stage. 
+				Join the vault, cast your vote, and be part of a
+				growing genre of PPOP that show case and shares Filipino talents.</p>
+		</section>
+
+	</div>
+
+
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+	crossorigin="anonymous"></script>
+</html>
