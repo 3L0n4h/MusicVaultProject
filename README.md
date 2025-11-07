@@ -18,3 +18,8 @@ Music Vault is a web application built using Springboot, hibernate, thymeleaf, a
 * [Screenshots](https://github.com/3L0n4h/MusicVaultProject/blob/main/musicvault/src/main/resources/docs/Music_Vault_ScreenShot_Document.pdf)
 * [ERD Picture](https://github.com/3L0n4h/MusicVaultProject/blob/main/musicvault/src/main/resources/docs/PH_MUSIC_VAULT_ERD.jpg)
 * [ERD open in Draw.io](https://github.com/3L0n4h/MusicVaultProject/blob/main/musicvault/src/main/resources/docs/PH_MUSIC_VAULT_DB_CONCEPT_V1.2.drawio)
+
+### How to Use
+* In Eclipse, import cloned project as Maven. Go to project file src/main/java/com.elonah.musicvault/MusicApplication.java
+* Run as Java Application
+* Open browser to http://localhost:8080/
